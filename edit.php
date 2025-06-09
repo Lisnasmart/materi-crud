@@ -1,6 +1,6 @@
 <?php include 'config.php';?>
     <?php
-    $id =$_GET['id'];
+    $id = $_GET["id"];
     $sql = "SELECT * FROM nana1 WHERE id='$id'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
@@ -16,22 +16,19 @@
   </head>
   <body>
           <?php
-          //fungsi untuk mengupdate data
+          
             if(isset($_POST['submit'])) {
         $nama = $_POST['nama'];
         $kelas = $_POST['kelas'];
         $jurusan = $_POST['jurusan'];
 
-        //vadasi data agar tidak kosong
-        if($nama == '' || $kelas == '' || $jurusan == '') {
+        if($nama == '' || $kelas == '' || $jurusan == '' || $hilangspasi == '' || $password == '') {
             echo "!!Data yang di update tidak bisa kosong!!";
             } else {
         
-                //jika data tidak kosong maka akan mengupdate
-        $sql = "UPDATE nana1 SET nama='$nama', kelas='$kelas', jurusan='$jurusan'
+        $sql = "UPDATE poweranger SET nama='$nama', kelas='$kelas', jurusan='$jurusan', uname='$hilangspasi', pass='$password'
         WHERE id='$id'";
         $result = mysqli_query($conn, $sql);
-        //tanda jika data berhasil diupdate
         if($result){
             echo "BERHASIL DI UPDATE";
             header("location: index.php");
@@ -43,7 +40,6 @@
 ?>
         <h5>edit data</h5>
 
-         <!-- form untuk mengupdate data  -->
             <form method="POST">
                   <label for="nama">nama</label>
                 <input type="text" id="nama" name="nama"value="<?php echo $row['nama'];?>">
@@ -53,6 +49,12 @@
                 <br>
                   <label for="jurusan">jurusan</label>
                 <input type="text" id="jurusan" name="jurusan"value="<?php echo $row['jurusan'];?>">
+                <br>
+                  <label for="uname">uname</label>
+                <input type="text" id="uname" name="uname"value="<?php echo $row['uname'];?>">
+                <br>
+                  <label for="pass">password</label>
+                <input type="text" id="pass" name="pass"value="<?php echo $row['pass'];?>">
                 <br>
 
 
